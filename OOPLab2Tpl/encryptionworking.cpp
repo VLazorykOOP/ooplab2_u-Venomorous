@@ -2,15 +2,9 @@
 #include <fstream>
 #include <string>
 
+// iiia aaaa aaaP lllp
+
 using namespace std;
-struct Da
-{
-    unsigned short row : 3;
-    unsigned short pos : 3;
-    unsigned short p2 : 1; // біт парності перших двох рядків
-    unsigned short pp : 1; // біт парності попереднього рядка
-    unsigned short ASCII : 8;
-};
 int main()
 {
     char s[8][9], ch;
@@ -51,9 +45,9 @@ int main()
             for (l = 0; l < 8; l++)
             {
 
-                r = i << 13; // 0000 0000 0000 0iii <- i
+                r = i << 13; // iii0 0000 0000 0000 <- i
                 vladik = s[i][l];
-                r |= vladik << 5; // 0000 0000 00ll l000 <- l
+                r |= vladik << 5; // 0000 0000 0000 lll0 <- l
                 b = 0;
                 t = 1;
                 for (k = 0; k < 6; k++)

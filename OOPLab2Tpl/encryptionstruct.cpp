@@ -3,14 +3,6 @@
 #include <string>
 
 using namespace std;
-struct Da
-{
-    unsigned short row : 3;
-    unsigned short pos : 3;
-    unsigned short p2 : 1; // біт парності перших двох рядків
-    unsigned short pp : 1; // біт парності попереднього рядка
-    unsigned short ASCII : 8;
-};
 int main()
 {
     char s[8][9], ch;
@@ -18,6 +10,15 @@ int main()
     unsigned char vladik;
     unsigned short t, b, i, j, l, k, r, w;
     char st[9];
+
+    struct Da
+    {
+        unsigned short row : 3;
+        unsigned short pos : 3;
+        unsigned short p2 : 1; // біт парності перших двох рядків
+        unsigned short pp : 1; // біт парності попереднього рядка
+        unsigned short ASCII : 8;
+    };
 
     ifstream fin;
     fin.open("input.txt");
@@ -31,7 +32,7 @@ int main()
     }
     else
     {
-
+        Da p{};
         for (i = 0; i < 8; i++)
         {
             fin.get(s[i], 9, '\0');
@@ -50,10 +51,9 @@ int main()
         {
             for (l = 0; l < 8; l++)
             {
-                Da.row = 13;
-                r = Da.row << Da.row; // 0000 0000 0000 0iii <- i
+                r |= i << p.row; // 0000 0000 0000 0iii <- i
                 vladik = s[i][l];
-                r |= vladik << 5; // 0000 0000 00ll l000 <- l
+                r |= vladik << p.pos; // 0000 0000 00ll l000 <- l
                 b = 0;
                 t = 1;
                 for (k = 0; k < 6; k++)
@@ -67,13 +67,13 @@ int main()
                     }
                     t <<= 1;
                 }
-                w = 1 << 4;
+                w = 1 << p.p2;
                 if (b)
                 {
                     r |= w;
                 }
 
-                r |= l << 1;
+                r |= l << p.p2;
 
                 t = 1;
                 b = 0;
