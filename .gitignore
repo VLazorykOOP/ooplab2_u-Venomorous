@@ -11,6 +11,9 @@
 *.sln.docstates
 *.rar
 *.exe
+.vscode
+*.json
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
